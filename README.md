@@ -3,12 +3,12 @@
 # TODO LIST
 
 - [x] Make it deploy
-- [ ] Scaffold basic ui with mock data
-- [ ] Setup database
+- [x] Tidy up build process
 - [ ] Attach database to UI
 - [ ] Add auth
-- [ ] Add image upload
 - [ ] Error Management (w/ Sentry)
 - [ ] Routing/Image Page (parallel route)
 - [ ] Analytics (posthog)
 - [ ] Rate Limiting (upstash)
+- [ ] Setup database
+- [ ] Add image upload
