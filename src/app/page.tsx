@@ -7,7 +7,7 @@ export default async function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       {session ? (
         <div>
-          <h1>Welcome {session.user.id}!</h1>
+          <h1>Welcome {session.user.name}!</h1>
           <p>You are signed in!</p>
         </div>
       ) : (
