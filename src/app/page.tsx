@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { auth } from "../server/auth"
+import { auth } from "../server/auth";
 
 export default async function HomePage() {
-  const session = await auth()
+  const session = await auth();
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       {session ? (
