@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import PostHogClient from "./posthog";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
