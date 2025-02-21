@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { auth } from "../server/auth";
-import posthog from 'posthog-js';
+import PostHogClient from "./posthog";
 
 export default async function HomePage() {
   const session = await auth();
-  
-  // Capture an event with PostHog
-  posthog.capture('visit homepage', { property: 'value' });
-  console.log("Event captured");
-
+  const posthog = PostHogClient();
+  const flags = await posthog.getAllFlags(
+    'user_distinct_id' // replace with a user's distinct ID
+  );
+  console.log(`Flags for user`)
+  console.dir(JSON.stringify(flags, null, 2))
+  await posthog.shutdown()
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       {session ? (
