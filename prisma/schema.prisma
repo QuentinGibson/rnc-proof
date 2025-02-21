@@ -79,19 +79,25 @@ model User {
     leagueOfLegends userLeagueOfLegends?
 }
 
-model Role {
+model LeagueOfLegendsChampionRole {
     id    String @id @default(cuid())
     name  String @unique
     userMainRole userLeagueOfLegends[]
-    champions Champion[]
+    champions LeagueOfLegendsChampion[]
 }
 
-model Champion {
+model LeagueOfLegendsSubjects {
+    id                 String                 @id @default(cuid())
+    name               String                 @unique
+}
+
+model LeagueOfLegendsChampion {
     id                 String                 @id @default(cuid())
     name               String                 @unique
     title              String
+    released             Boolean                @default(false)
     roleId             String
-    role               Role                   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+    role               LeagueOfLegendsChampionRole           @relation(fields: [roleId], references: [id], onDelete: Cascade)
     userLeagueSettings userLeagueOfLegends[]
 }
 
@@ -99,9 +105,9 @@ model userLeagueOfLegends {
     id            String    @id @default(cuid())
     updatedAt     DateTime  @updatedAt @default(now())
     mainChampionId String?
-    mainChampion   Champion? @relation(fields: [mainChampionId], references: [id])
+    mainChampion   LeagueOfLegendsChampion? @relation(fields: [mainChampionId], references: [id])
     mainRoleId       String
-    mainRole        Role      @relation(fields: [mainRoleId], references: [id], onDelete: Cascade)
+    mainRole        LeagueOfLegendsChampionRole      @relation(fields: [mainRoleId], references: [id], onDelete: Cascade)
     userId        String    @unique
     user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -148,7 +154,9 @@ model Language {
 model Deck {
   id String @id @default(cuid())
   name String
+  subject String
   description String
+  released Boolean @default(false)
   image String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -185,7 +193,6 @@ model cardChoiceType {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  cardId String
   cardChoices CardChoice[]
 }
 
